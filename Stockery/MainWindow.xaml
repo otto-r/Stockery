@@ -7,6 +7,34 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListView ItemsSource="{Binding Stocks}"
+                  SelectedItem="{Binding SelectedStock, Mode=TwoWay}"
+                  DisplayMemberPath="Name" />
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Name" Margin="10 10 10 10"/>
+            <TextBox Grid.Row="1" Text="{Binding SelectedStock.Name,
+                Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
+            <Label Grid.Row="2"  Content="Ticker" Margin="10 0"/>
+            <TextBox Grid.Row="3" Text="{Binding SelectedStock.Ticker,
+                Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
+            <Label Grid.Row="4"  Content="Historical Price" Margin="10 0"/>
+            <TextBox Grid.Row="5" Text="{Binding SelectedStock.HistoricalPrices[0],
+                Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
+            <ListView Grid.Row="6" ItemsSource="{Binding SelectedStock}"
+                      DisplayMemberPath="Name"/>
+        </Grid>
     </Grid>
 </Window>

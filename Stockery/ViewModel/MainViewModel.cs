@@ -9,8 +9,6 @@ namespace Stockery.ViewModel
         private IStockDataService _stockDataService;
         private Stock _selectedStock;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public MainViewModel(IStockDataService stockDataService)
         {
             Stocks = new ObservableCollection<Stock>();

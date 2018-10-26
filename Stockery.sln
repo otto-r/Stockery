@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stockery", "Stockery\Stockery.csproj", "{9255828E-52E9-40C1-9181-23DA5897321F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stockery.UI", "Stockery\Stockery.UI.csproj", "{9255828E-52E9-40C1-9181-23DA5897321F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stockery.Model", "Stockery.Model\Stockery.Model.csproj", "{DE100EB5-FF86-4DD7-B84C-20E0FF47DFEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stockery.DataAccess", "Stockery.DataAccess\Stockery.DataAccess.csproj", "{BF3CA590-4996-4725-A44D-805C13EFBE9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{9255828E-52E9-40C1-9181-23DA5897321F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9255828E-52E9-40C1-9181-23DA5897321F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9255828E-52E9-40C1-9181-23DA5897321F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE100EB5-FF86-4DD7-B84C-20E0FF47DFEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE100EB5-FF86-4DD7-B84C-20E0FF47DFEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE100EB5-FF86-4DD7-B84C-20E0FF47DFEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE100EB5-FF86-4DD7-B84C-20E0FF47DFEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF3CA590-4996-4725-A44D-805C13EFBE9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF3CA590-4996-4725-A44D-805C13EFBE9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF3CA590-4996-4725-A44D-805C13EFBE9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF3CA590-4996-4725-A44D-805C13EFBE9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
