@@ -12,8 +12,8 @@ namespace Stockery.DataAccess.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Ticker = c.String(),
+                        Name = c.String(nullable: false, maxLength: 25),
+                        Ticker = c.String(nullable: false, maxLength: 8),
                     })
                 .PrimaryKey(t => t.Id);
             

@@ -16,7 +16,7 @@ namespace Stockery.DataAccess
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>(); // does not pluralize
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>(); // does not pluralize table names
         }
     }
 }
