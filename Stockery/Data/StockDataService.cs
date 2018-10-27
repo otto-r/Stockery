@@ -19,7 +19,7 @@ namespace Stockery
             List<double> fakeHistoricalPrices = new List<double>();
             for (int i = 0; i < 100; i++)
             {
-                var fakePrice = basePrice * rnd.Next(-1, 15) / 10;
+                var fakePrice = basePrice * rnd.Next(9, 115) / 100;
                 fakeHistoricalPrices.Add(fakePrice);
             }
             return fakeHistoricalPrices;
