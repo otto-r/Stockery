@@ -31,7 +31,7 @@
             <TextBox Grid.Row="3" Text="{Binding SelectedStock.Ticker,
                 Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
             <Label Grid.Row="4"  Content="Historical Price" Margin="10 0"/>
-            <TextBox Grid.Row="5" Text="{Binding SelectedStock.HistoricalPrices[0],
+            <TextBox Grid.Row="5" Text="{Binding SelectedStock.HistoricalPrices[0].Date,
                 Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
             <ListView Grid.Row="6" ItemsSource="{Binding SelectedStock}"
                       DisplayMemberPath="Name"/>

@@ -12,6 +12,6 @@ namespace Stockery.Model
         [Required]
         [MaxLength(8)]
         public string Ticker { get; set; }
-        public List<double> HistoricalPrices { get; set; }
+        public List<HistoricalStockPriceInfo> HistoricalPrices { get; set; }
     }
 }

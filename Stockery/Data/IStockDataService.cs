@@ -6,6 +6,6 @@ namespace Stockery
     public interface IStockDataService
     {
         IEnumerable<Stock> GetStocks();
-        List<double> RandomHistoricalPrice(int basePrice);
+        List<HistoricalStockPriceInfo> RandomHistoricalPriceInfo(int basePrice);
     }
 }

@@ -8,20 +8,27 @@ namespace Stockery
     {
         public IEnumerable<Stock> GetStocks()
         {
-            yield return new Stock { Id = 1, Name = "Microsoft", Ticker = "MSFT", HistoricalPrices = RandomHistoricalPrice(100) };
-            yield return new Stock { Id = 2, Name = "Apple", Ticker = "AAPL", HistoricalPrices = RandomHistoricalPrice(200) };
-            yield return new Stock { Id = 3, Name = "Netflix", Ticker = "NFLX", HistoricalPrices = RandomHistoricalPrice(100) };
+            yield return new Stock { Id = 1, Name = "Microsoft", Ticker = "MSFT", HistoricalPrices = RandomHistoricalPriceInfo(100) };
+            yield return new Stock { Id = 2, Name = "Apple", Ticker = "AAPL", HistoricalPrices = RandomHistoricalPriceInfo(200) };
+            yield return new Stock { Id = 3, Name = "Netflix", Ticker = "NFLX", HistoricalPrices = RandomHistoricalPriceInfo(100) };
         }
 
-        public List<double> RandomHistoricalPrice(int basePrice)
+        public List<HistoricalStockPriceInfo> RandomHistoricalPriceInfo(int basePrice)
         {
+            var date = DateTime.Now;
             var rnd = new Random();
-            List<double> fakeHistoricalPrices = new List<double>();
+            var fakeHistoricalPrices = new List<HistoricalStockPriceInfo>();
+
             for (int i = 0; i < 100; i++)
             {
-                var fakePrice = basePrice * rnd.Next(9, 115) / 100;
-                fakeHistoricalPrices.Add(fakePrice);
+                var fakeHistoricalStockPriceInfo = new HistoricalStockPriceInfo();
+                fakeHistoricalStockPriceInfo.Price = basePrice * rnd.Next(9, 115) / 100;
+                fakeHistoricalPrices.Add(fakeHistoricalStockPriceInfo);
+                //fakeHistoricalStockPriceInfo.Date = date = date.AddDays(-1);
+
+                fakeHistoricalPrices.Add(fakeHistoricalStockPriceInfo);
             }
+
             return fakeHistoricalPrices;
         }
     }
