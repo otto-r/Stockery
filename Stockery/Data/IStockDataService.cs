@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Stockery.Model;
 
 namespace Stockery
 {
     public interface IStockDataService
     {
-        IEnumerable<Stock> GetStocks();
-        List<HistoricalStockPriceInfo> RandomHistoricalPriceInfo(int basePrice);
+        Task<List<Stock>> GetStocksAsync();
     }
 }

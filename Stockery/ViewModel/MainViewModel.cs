@@ -1,6 +1,7 @@
 ﻿using Stockery.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Stockery.ViewModel
 {
@@ -15,9 +16,9 @@ namespace Stockery.ViewModel
             _stockDataService = stockDataService;
         }
 
-        public void Load()
+        public async Task LoadAsync()
         {
-            var stocks = _stockDataService.GetStocks();
+            var stocks = await _stockDataService.GetStocksAsync();
             Stocks.Clear();
             foreach (var stock in stocks)
             {

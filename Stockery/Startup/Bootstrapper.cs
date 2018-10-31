@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Stockery.DataAccess;
 using Stockery.ViewModel;
 
 namespace Stockery.Startup
@@ -8,6 +9,8 @@ namespace Stockery.Startup
         public IContainer Boostrap()
         {
             var builder = new ContainerBuilder();
+
+            builder.RegisterType<StockDbContext>().AsSelf();
 
             builder.RegisterType<MainWindow>().AsSelf();
             builder.RegisterType<MainViewModel>().AsSelf();
