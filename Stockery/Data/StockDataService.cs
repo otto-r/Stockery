@@ -15,11 +15,11 @@ namespace Stockery
         {
             _contextCreator = contextCreator;
         }
-        public async Task<List<Stock>> GetStocksAsync()
+        public async Task<Stock> GetByIdAsync(int stockId)
         {
             using (var context = new StockDbContext())
             {
-                return await context.Stocks.AsNoTracking().ToListAsync();
+                return await context.Stocks.AsNoTracking().SingleAsync(s => s.Id == stockId);
             }
         }
     }
