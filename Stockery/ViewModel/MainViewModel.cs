@@ -7,35 +7,16 @@ namespace Stockery.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private IStockDataService _stockDataService;
-        private Stock _selectedStock;
 
-        public MainViewModel(IStockDataService stockDataService)
+        public MainViewModel(INavigationViewModel navigationViewModel)
         {
-            Stocks = new ObservableCollection<Stock>();
-            _stockDataService = stockDataService;
+            NavigationViewModel = navigationViewModel;
         }
 
         public async Task LoadAsync()
         {
-            var stocks = await _stockDataService.GetStocksAsync();
-            Stocks.Clear();
-            foreach (var stock in stocks)
-            {
-                Stocks.Add(stock);
-            }
+            await NavigationViewModel.LoadAsync();
         }
-
-        public ObservableCollection<Stock> Stocks { get; set; }
-
-        public Stock SelectedStock
-        {
-            get { return _selectedStock; }
-            set
-            {
-                _selectedStock = value;
-                OnPropertyChanged();
-            }
-        }
+        public INavigationViewModel NavigationViewModel { get; }
     }
 }

@@ -12,7 +12,7 @@ namespace Stockery
         {
             InitializeComponent();
             _mainViewModel = mainViewModel;
-            DataContext = mainViewModel;
+            DataContext = _mainViewModel;
             Loaded += MainWindow_Loaded;
         }
 

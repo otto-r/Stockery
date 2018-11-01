@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Stockery.Data;
 using Stockery.DataAccess;
 using Stockery.ViewModel;
 
@@ -14,6 +15,9 @@ namespace Stockery.Startup
 
             builder.RegisterType<MainWindow>().AsSelf();
             builder.RegisterType<MainViewModel>().AsSelf();
+            builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
+
+            builder.RegisterType<LookUpDataService>().AsImplementedInterfaces();
             builder.RegisterType<StockDataService>().As<IStockDataService>();
 
             return builder.Build(); 
