@@ -22,6 +22,16 @@ namespace Stockery
                 return await context.Stocks.AsNoTracking().SingleAsync(s => s.Id == stockId);
             }
         }
+
+        public async Task SaveAsync(Stock stock)
+        {
+            using(var context = _contextCreator())
+            {
+                context.Stocks.Attach(stock);
+                context.Entry(stock).State = EntityState.Modified;
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }
  

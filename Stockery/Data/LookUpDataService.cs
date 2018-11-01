@@ -26,7 +26,7 @@ namespace Stockery.Data
                     .Select(s => new LookUpItem
                     {
                         Id = s.Id,
-                        DisplayMember = s.Name
+                        DisplayMember = s.Name + " - " + s.Ticker
                     }).ToListAsync();
             }
         }

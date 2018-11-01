@@ -7,5 +7,6 @@ namespace Stockery
     public interface IStockDataService
     {
         Task<Stock> GetByIdAsync(int stockId);
+        Task SaveAsync(Stock stock);
     }
 }
