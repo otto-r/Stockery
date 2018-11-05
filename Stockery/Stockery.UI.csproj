@@ -88,6 +88,9 @@
     <Compile Include="View\StockDetailView.xaml.cs">
       <DependentUpon>StockDetailView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Wrapper\ModelWrapper.cs" />
+    <Compile Include="Wrapper\NotifyErrorInfoBase.cs" />
+    <Compile Include="Wrapper\StockWrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
