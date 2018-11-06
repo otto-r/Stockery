@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Stockery.Model;
 
-namespace Stockery.Data
+namespace Stockery.Data.LookUps
 {
     public interface IStockLookUpDataService
     {

@@ -1,6 +1,8 @@
 ﻿using Prism.Events;
 using Stockery.Data;
+using Stockery.Data.LookUps;
 using Stockery.Event;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,13 +20,9 @@ namespace Stockery.ViewModel
             _eventAggregator = eventAggregator;
             Stocks = new ObservableCollection<NavigationItemViewModel>();
             _eventAggregator.GetEvent<AfterStockSavedEvent>().Subscribe(AfterStockSaved);
+            _eventAggregator.GetEvent<AfterStockDeletedEvent>().Subscribe(AfterStockDeleted);
         }
 
-        private void AfterStockSaved(AfterStockSavedEventArgs obj)
-        {
-            var lookUpItem = Stocks.Single(s => s.Id == obj.Id);
-            lookUpItem.DisplayMember = obj.DisplayMember;
-        }
 
         public async Task LoadAsync()
         {
@@ -32,7 +30,7 @@ namespace Stockery.ViewModel
             Stocks.Clear();
             foreach (var item in lookup)
             {
-                Stocks.Add(new NavigationItemViewModel(item.Id, item.DisplayMember));
+                Stocks.Add(new NavigationItemViewModel(item.Id, item.DisplayMember, _eventAggregator));
             }
         }
         public ObservableCollection<NavigationItemViewModel> Stocks { get; }
@@ -53,5 +51,26 @@ namespace Stockery.ViewModel
             }
         }
 
+        private void AfterStockDeleted(int stockId)
+        {
+            var stock = Stocks.SingleOrDefault(s => s.Id == stockId);
+            if (stock!=null)
+            {
+                Stocks.Remove(stock);
+            }
+        }
+
+        private void AfterStockSaved(AfterStockSavedEventArgs obj)
+        {
+            var lookUpItem = Stocks.SingleOrDefault(s => s.Id == obj.Id);
+            if (lookUpItem == null)
+            {
+                Stocks.Add(new NavigationItemViewModel(obj.Id, obj.DisplayMember, _eventAggregator));
+            }
+            else
+            {
+                lookUpItem.DisplayMember = obj.DisplayMember;
+            }
+        }
     }
 }

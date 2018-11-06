@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Stockery.Data
+namespace Stockery.Data.LookUps
 {
     public class LookUpDataService : IStockLookUpDataService
     {

@@ -1,7 +1,10 @@
 ﻿using Prism.Commands;
 using Prism.Events;
+using Stockery.Data.Repositories;
 using Stockery.Event;
+using Stockery.Model;
 using Stockery.Wrapper;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -9,32 +12,52 @@ namespace Stockery.ViewModel
 {
     public class StockDetailViewModel : ViewModelBase, IStockDetailViewModel
     {
-        private IStockDataService _stockDataService;
+        private IStockRepository _stockRepository;
         private IEventAggregator _eventAggregator;
         private StockWrapper _stock;
+        private bool _hasChanges;
 
-        public StockDetailViewModel(IStockDataService stockDataService, IEventAggregator eventAggregator)
+
+        public StockDetailViewModel(IStockRepository stockRepository, IEventAggregator eventAggregator)
         {
-            _stockDataService = stockDataService;
+            _stockRepository = stockRepository;
             _eventAggregator = eventAggregator;
-            _eventAggregator.GetEvent<OpenStockDetailViewEvent>().Subscribe(OnOpenStockDetailView);
 
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+            DeleteCommand = new DelegateCommand(OnDeleteExecute);
         }
 
-        public async Task LoadAsync(int stockId)
+        private async void OnDeleteExecute()
         {
-            var stock = await _stockDataService.GetByIdAsync(stockId);
+            _stockRepository.Remove(Stock.Model);
+            await _stockRepository.SaveAsync();
+            _eventAggregator.GetEvent<AfterStockDeletedEvent>().Publish(Stock.Id);
+        }
+
+        public async Task LoadAsync(int? stockId)
+        {
+            var stock = stockId.HasValue
+                ? await _stockRepository.GetByIdAsync(stockId.Value)
+            : AddNewStock();
             Stock = new StockWrapper(stock);
             Stock.PropertyChanged += (s, e) =>
             {
+                if (!HasChanges)
+                {
+                    HasChanges = _stockRepository.HasChanges();
+                }
                 if (e.PropertyName == nameof(Stock.HasErrors))
                 {
                     ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
                 }
             };
+            if (Stock.Id == 0)
+            {
+                Stock.Name = "";
+            }
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
         }
+
 
         public StockWrapper Stock
         {
@@ -46,11 +69,27 @@ namespace Stockery.ViewModel
             }
         }
 
+        public bool HasChanges
+        {
+            get { return _hasChanges; }
+            set
+            {
+                if (_hasChanges != value)
+                {
+                    _hasChanges = value;
+                    OnPropertyChanged();
+                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                }
+            }
+        }
+
         public ICommand SaveCommand { get; }
+        public ICommand DeleteCommand { get; }
 
         private async void OnSaveExecute()
         {
-            await _stockDataService.SaveAsync(Stock.Model);
+            await _stockRepository.SaveAsync();
+            HasChanges = _stockRepository.HasChanges();
             _eventAggregator.GetEvent<AfterStockSavedEvent>().Publish(new AfterStockSavedEventArgs
             {
                 Id = Stock.Id,
@@ -60,13 +99,14 @@ namespace Stockery.ViewModel
 
         private bool OnSaveCanExecute()
         {
-            //todo
-            return Stock != null && !Stock.HasErrors;
+            return Stock != null && !Stock.HasErrors && HasChanges;
         }
 
-        private async void OnOpenStockDetailView(int stockId)
+        private Stock AddNewStock()
         {
-            await LoadAsync(stockId);
+            var stock = new Stock();
+            _stockRepository.Add(stock);
+            return stock;
         }
     }
 }

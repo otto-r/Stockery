@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Stockery.Event
 {
-    public class OpenStockDetailViewEvent : PubSubEvent<int>
+    public class OpenStockDetailViewEvent : PubSubEvent<int?>
     {
 
     }
