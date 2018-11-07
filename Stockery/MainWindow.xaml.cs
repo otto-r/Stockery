@@ -1,10 +1,11 @@
-﻿using Stockery.ViewModel;
+﻿using MahApps.Metro.Controls;
+using Stockery.ViewModel;
 using System;
 using System.Windows;
 
 namespace Stockery
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         private MainViewModel _mainViewModel;
 

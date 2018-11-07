@@ -1,8 +1,9 @@
-﻿<Window x:Class="Stockery.MainWindow"
+﻿<Controls:MetroWindow x:Class="Stockery.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:Stockery"
         xmlns:view="clr-namespace:Stockery.View"
         mc:Ignorable="d"
@@ -43,4 +44,4 @@
             <view:BondDetailView Grid.Row="1" Grid.Column="2" DataContext="{Binding BondDetailViewModel}"/>
         </Grid>
     </Grid>
-</Window>
+</Controls:MetroWindow>

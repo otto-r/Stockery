@@ -13,7 +13,7 @@ namespace Stockery.DataAccess.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201811071849228_init"; }
+            get { return "201811072213523_init"; }
         }
         
         string IMigrationMetadata.Source
