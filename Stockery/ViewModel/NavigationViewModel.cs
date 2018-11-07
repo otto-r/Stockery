@@ -23,7 +23,6 @@ namespace Stockery.ViewModel
             _eventAggregator.GetEvent<AfterStockDeletedEvent>().Subscribe(AfterStockDeleted);
         }
 
-
         public async Task LoadAsync()
         {
             var lookup = await _stockLookUpDataService.GetStockLookUpAsync();

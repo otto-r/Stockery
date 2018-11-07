@@ -8,16 +8,13 @@ namespace Stockery.DataAccess.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.HistoricalStockPriceInfoes",
+                "dbo.Bonds",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Price = c.Double(nullable: false),
-                        Stock_Id = c.Int(),
+                        Name = c.String(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Stocks", t => t.Stock_Id)
-                .Index(t => t.Stock_Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Stocks",
@@ -33,10 +30,8 @@ namespace Stockery.DataAccess.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.HistoricalStockPriceInfoes", "Stock_Id", "dbo.Stocks");
-            DropIndex("dbo.HistoricalStockPriceInfoes", new[] { "Stock_Id" });
             DropTable("dbo.Stocks");
-            DropTable("dbo.HistoricalStockPriceInfoes");
+            DropTable("dbo.Bonds");
         }
     }
 }

@@ -22,7 +22,13 @@
             </MenuItem>
         </Menu>
         <view:NavigationView Grid.Row="1" DataContext="{Binding NavigationViewModel}"/>
-        <view:StockDetailView Grid.Row="1" Grid.Column="1" DataContext="{Binding StockDetailViewModel}"/>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+        <view:StockDetailView Grid.Row="0" Grid.Column="1" DataContext="{Binding StockDetailViewModel}"/>
+        </Grid>
 
         
     </Grid>

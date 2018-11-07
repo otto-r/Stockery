@@ -1,8 +1,6 @@
 namespace Stockery.DataAccess.Migrations
 {
     using Stockery.Model;
-    using System;
-    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Stockery.DataAccess.StockDbContext>
@@ -21,24 +19,12 @@ namespace Stockery.DataAccess.Migrations
                     Id = 1,
                     Name = "Microsoft",
                     Ticker = "MSFT",
-                    HistoricalPrices = new List<HistoricalStockPriceInfo>
-                    {
-                        new HistoricalStockPriceInfo {Id = 1, Price = 100},
-                        new HistoricalStockPriceInfo {Id = 2, Price = 99},
-                        new HistoricalStockPriceInfo {Id = 3, Price = 101}
-                    }
                 },
                 new Stock
                 {
                     Id = 2,
                     Name = "Apple",
                     Ticker = "AAPL",
-                    HistoricalPrices = new List<HistoricalStockPriceInfo>
-                    {
-                        new HistoricalStockPriceInfo {Id = 1, Price = 45},
-                        new HistoricalStockPriceInfo {Id = 2, Price = 46},
-                        new HistoricalStockPriceInfo {Id = 3, Price = 47}
-                    }
                 },
                 new Stock
                 {
@@ -53,26 +39,43 @@ namespace Stockery.DataAccess.Migrations
                     Ticker = "GOOG",
                 }
                 );
+            context.Bonds.AddOrUpdate(b => b.Name,
+                new Bond
+                {
+                    Id = 1,
+                    Name = "3 MONTH"
+                },
+                new Bond
+                {
+                    Id = 2,
+                    Name = "6 MONTH"
+                },
+                new Bond
+                {
+                    Id = 3,
+                    Name = "12 MONTH"
+                },
+                new Bond
+                {
+                    Id = 5,
+                    Name = "2 YEAR"
+                },
+                new Bond
+                {
+                    Id = 6,
+                    Name = "5 YEAR"
+                },
+                new Bond
+                {
+                    Id = 7,
+                    Name = "10 YEAR"
+                },
+                new Bond
+                {
+                    Id = 8,
+                    Name = "30 YEAR"
+                }
+                );
         }
-
-        //public List<HistoricalStockPriceInfo> RandomHistoricalPriceInfo(int basePrice)
-        //{
-        //    var date = DateTime.Now;
-        //    var rnd = new Random();
-        //    var fakeHistoricalPrices = new List<HistoricalStockPriceInfo>();
-
-        //    for (int i = 0; i < 100; i++)
-        //    {
-        //        var fakeHistoricalStockPriceInfo = new HistoricalStockPriceInfo
-        //        {
-        //            Price = basePrice * rnd.Next(9, 115) / 100
-        //        };
-        //        fakeHistoricalStockPriceInfo.Date = date.AddDays(-1);
-
-        //        fakeHistoricalPrices.Add(fakeHistoricalStockPriceInfo);
-        //    }
-
-        //    return fakeHistoricalPrices;
-        //}
     }
 }

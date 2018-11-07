@@ -7,8 +7,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListView ItemsSource="{Binding Stocks}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Stocks" Margin="10 10 10 10"/>
+        <ListView Grid.Row="1" ItemsSource="{Binding Stocks}"
                   SelectedItem="{Binding SelectedStock,Mode=TwoWay}"
                   DisplayMemberPath="DisplayMember" />
+        <Label Grid.Row="2" Content="Bonds" Margin="10 10 10 10"/>
+        <ListView Grid.Row="3" ItemsSource="{Binding Bonds}"
+                  SelectedItem="{Binding SelectedBond,Mode=TwoWay}"
+                  DisplayMemberPath="DisplayMember"/>
     </Grid>
 </UserControl>

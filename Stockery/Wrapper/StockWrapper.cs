@@ -37,11 +37,5 @@ namespace Stockery.Wrapper
                     break;
             }
         }
-
-        //private void ValidateProperty(string propertyName)
-        //{
-        //    ClearErrors(propertyName);
-
-        //}
     }
 }

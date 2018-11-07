@@ -14,9 +14,8 @@ namespace Stockery.DataAccess
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>(); // does not pluralize table names
         }
         public DbSet<Stock> Stocks { get; set; }
-        public DbSet<HistoricalStockPriceInfo> HistoricalStockPriceInfos { get; set; }
+        public DbSet<Bond> Bonds { get; set; }
     }
 }

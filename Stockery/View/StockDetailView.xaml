@@ -12,8 +12,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -23,12 +21,7 @@
         <Label Grid.Row="2"  Content="Ticker" Margin="10 0"/>
         <TextBox Grid.Row="3" Text="{Binding Stock.Ticker,
                 Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
-        <Label Grid.Row="4"  Content="Historical Price" Margin="10 0"/>
-        <TextBox Grid.Row="5" Text="{Binding Stock.HistoricalPrices[0].Date,
-                Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
-        <ListView Grid.Row="6" ItemsSource="{Binding Stock}"
-                      DisplayMemberPath="Name"/>
-        <StackPanel Grid.Row="7" Orientation="Horizontal">
+        <StackPanel Grid.Row="4" Orientation="Horizontal">
             <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}"/>
             <Button Content="Delete" Width="125" Margin="10" Command="{Binding DeleteCommand}"/>
         </StackPanel>
