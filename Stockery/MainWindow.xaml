@@ -6,9 +6,11 @@
         xmlns:local="clr-namespace:Stockery"
         xmlns:view="clr-namespace:Stockery.View"
         mc:Ignorable="d"
-        Title="Stockery" Height="450" Width="800">
+        Title="Stockery" Height="650" Width="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -16,20 +18,29 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Menu Grid.ColumnSpan="2" FontSize="20">
+        <Menu Grid.ColumnSpan="1" FontSize="20">
             <MenuItem Header="Create">
                 <MenuItem Header="Add Stock" Command="{Binding AddNewStockCommand}"/>
             </MenuItem>
         </Menu>
+        <Menu Grid.Row="2" FontSize="20">
+            <MenuItem Header="Create">
+                <MenuItem Header="Add Bond" Command="{Binding AddNewBondCommand}"/>
+            </MenuItem>
+        </Menu>
         <view:NavigationView Grid.Row="1" DataContext="{Binding NavigationViewModel}"/>
+        <view:NavigationViewBond Grid.Row="3" DataContext="{Binding NavigationBondViewModel}"/>
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
+            </Grid.RowDefinitions>
+            <view:StockDetailView Grid.Row="0" Grid.Column="1" DataContext="{Binding StockDetailViewModel}"/>
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-        <view:StockDetailView Grid.Row="0" Grid.Column="1" DataContext="{Binding StockDetailViewModel}"/>
+            <view:BondDetailView Grid.Row="1" Grid.Column="2" DataContext="{Binding BondDetailViewModel}"/>
         </Grid>
-
-        
     </Grid>
 </Window>

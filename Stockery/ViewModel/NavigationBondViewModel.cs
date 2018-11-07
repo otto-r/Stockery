@@ -16,7 +16,7 @@ namespace Stockery.ViewModel
         {
             _bondLookUpDataService = bondLookUpDataService;
             _eventAggregator = eventAggregator;
-            Bonds = new ObservableCollection<NavigationItemViewModel>();
+            Bonds = new ObservableCollection<NavigationItemBondViewModel>();
             _eventAggregator.GetEvent<AfterBondSavedEvent>().Subscribe(AfterBondSaved);
             _eventAggregator.GetEvent<AfterBondDeletedEvent>().Subscribe(AfterBondDeleted);
         }
@@ -27,14 +27,14 @@ namespace Stockery.ViewModel
             Bonds.Clear();
             foreach (var item in lookup)
             {
-                Bonds.Add(new NavigationItemViewModel(item.Id, item.DisplayMember, _eventAggregator));
+                Bonds.Add(new NavigationItemBondViewModel(item.Id, item.DisplayMember, _eventAggregator));
             }
         }
-        public ObservableCollection<NavigationItemViewModel> Bonds { get; }
+        public ObservableCollection<NavigationItemBondViewModel> Bonds { get; }
 
-        private NavigationItemViewModel _selectedBond;
+        private NavigationItemBondViewModel _selectedBond;
 
-        public NavigationItemViewModel SelectedBond
+        public NavigationItemBondViewModel SelectedBond
         {
             get { return _selectedBond; }
             set
@@ -62,7 +62,7 @@ namespace Stockery.ViewModel
             var lookUpItem = Bonds.SingleOrDefault(s => s.Id == obj.Id);
             if (lookUpItem == null)
             {
-                Bonds.Add(new NavigationItemViewModel(obj.Id, obj.DisplayMember, _eventAggregator));
+                Bonds.Add(new NavigationItemBondViewModel(obj.Id, obj.DisplayMember, _eventAggregator));
             }
             else
             {

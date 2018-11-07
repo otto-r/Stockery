@@ -19,6 +19,7 @@ namespace Stockery.ViewModel
         private IBondDetailViewModel _bondDetailViewModel;
 
         public MainViewModel(INavigationViewModel navigationViewModel,
+            INavigationBondViewModel navigationBondViewModel,
             Func<IStockDetailViewModel> stockDetailViewModelCreator,
             Func<IBondDetailViewModel> bondDetailViewModelCreator,
             IEventAggregator eventAggregator,
@@ -30,23 +31,27 @@ namespace Stockery.ViewModel
             _messageDialogService = messageDialogService;
 
             _eventAggregator.GetEvent<OpenStockDetailViewEvent>().Subscribe(OnOpenStockDetailView);
+            _eventAggregator.GetEvent<OpenBondDetailViewEvent>().Subscribe(OnOpenBondDetailView);
 
             AddNewStockCommand = new DelegateCommand(OnAddNewStockExecute);
             AddNewBondCommand = new DelegateCommand(OnAddNewBondExecute);
 
             NavigationViewModel = navigationViewModel;
+            NavigationBondViewModel = navigationBondViewModel;
         }
 
 
         public async Task LoadAsync()
         {
             await NavigationViewModel.LoadAsync();
+            await NavigationBondViewModel.LoadAsync();
         }
 
         public ICommand AddNewStockCommand { get; }
         public ICommand AddNewBondCommand { get; }
 
         public INavigationViewModel NavigationViewModel { get; }
+        public INavigationBondViewModel NavigationBondViewModel { get; }
 
         public IStockDetailViewModel StockDetailViewModel
         {

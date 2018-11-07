@@ -24,6 +24,7 @@ namespace Stockery.Startup
 
             builder.RegisterType<MainViewModel>().AsSelf();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
+            builder.RegisterType<NavigationBondViewModel>().As<INavigationBondViewModel>();
             builder.RegisterType<StockDetailViewModel>().As<IStockDetailViewModel>();
             builder.RegisterType<BondDetailViewModel>().As<IBondDetailViewModel>();
 
