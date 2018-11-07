@@ -2,7 +2,7 @@
 
 namespace Stockery.Event
 {
-    public class OpenStockDetailViewEvent : PubSubEvent<int?>
+    public class OpenBondDetailViewEvent : PubSubEvent<int?>
     {
 
     }

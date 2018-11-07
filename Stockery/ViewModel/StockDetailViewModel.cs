@@ -4,7 +4,6 @@ using Stockery.Data.Repositories;
 using Stockery.Event;
 using Stockery.Model;
 using Stockery.Wrapper;
-using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 

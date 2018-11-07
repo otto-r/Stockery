@@ -2,7 +2,7 @@
 
 namespace Stockery.Event
 {
-    public    class AfterStockDeletedEvent:PubSubEvent<int>
+    public class AfterStockDeletedEvent : PubSubEvent<int>
     {
     }
 }

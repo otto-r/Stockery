@@ -2,12 +2,12 @@
 
 namespace Stockery.Event
 {
-    public class AfterStockSavedEvent : PubSubEvent<AfterStockSavedEventArgs>
+    public class AfterBondSavedEvent : PubSubEvent<AfterBondSavedEventArgs>
     {
 
     }
 
-    public class AfterStockSavedEventArgs
+    public class AfterBondSavedEventArgs
     {
         public int Id { get; set; }
         public string DisplayMember { get; set; }

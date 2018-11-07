@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Prism.Events;
-using Stockery.Data;
 using Stockery.Data.LookUps;
 using Stockery.Data.Repositories;
 using Stockery.DataAccess;
@@ -26,9 +25,12 @@ namespace Stockery.Startup
             builder.RegisterType<MainViewModel>().AsSelf();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
             builder.RegisterType<StockDetailViewModel>().As<IStockDetailViewModel>();
+            builder.RegisterType<BondDetailViewModel>().As<IBondDetailViewModel>();
 
             builder.RegisterType<LookUpDataService>().AsImplementedInterfaces();
+            builder.RegisterType<LookUpBondDataService>().AsImplementedInterfaces();
             builder.RegisterType<StockRepository>().As<IStockRepository>();
+            builder.RegisterType<BondRepository>().As<IBondRepository>();
 
             return builder.Build();
         }

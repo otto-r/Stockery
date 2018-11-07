@@ -5,17 +5,17 @@ using System.Windows.Input;
 
 namespace Stockery.ViewModel
 {
-    public class NavigationItemViewModel : ViewModelBase
+    public class NavigationItemBondViewModel : ViewModelBase
     {
         private string _displayMember;
         private IEventAggregator _eventAggregator;
 
-        public NavigationItemViewModel(int id, string displayMember, IEventAggregator eventAggregator)
+        public NavigationItemBondViewModel(int id, string displayMember, IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
             Id = id;
             DisplayMember = displayMember;
-            OpenStockDetailViewCommand = new DelegateCommand(OnOpenStockDetailView);
+            OpenBondDetailViewCommand = new DelegateCommand(OnOpenBondDetailView);
         }
 
         public int Id { get; }
@@ -29,12 +29,12 @@ namespace Stockery.ViewModel
                 OnPropertyChanged();
             }
         }
-        public ICommand OpenStockDetailViewCommand { get; }
+        public ICommand OpenBondDetailViewCommand { get; }
 
 
-        private void OnOpenStockDetailView()
+        private void OnOpenBondDetailView()
         {
-            _eventAggregator.GetEvent<OpenStockDetailViewEvent>().Publish(Id);
+            _eventAggregator.GetEvent<OpenBondDetailViewEvent>().Publish(Id);
         }
     }
 }

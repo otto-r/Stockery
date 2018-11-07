@@ -13,21 +13,26 @@ namespace Stockery.ViewModel
 
         private IEventAggregator _eventAggregator;
         private Func<IStockDetailViewModel> _stockDetailViewModelCreator;
+        private Func<IBondDetailViewModel> _bondDetailViewModelCreator;
         private IMessageDialogService _messageDialogService;
         private IStockDetailViewModel _stockDetailViewModel;
+        private IBondDetailViewModel _bondDetailViewModel;
 
         public MainViewModel(INavigationViewModel navigationViewModel,
             Func<IStockDetailViewModel> stockDetailViewModelCreator,
+            Func<IBondDetailViewModel> bondDetailViewModelCreator,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService)
         {
             _eventAggregator = eventAggregator;
             _stockDetailViewModelCreator = stockDetailViewModelCreator;
+            _bondDetailViewModelCreator = bondDetailViewModelCreator;
             _messageDialogService = messageDialogService;
 
             _eventAggregator.GetEvent<OpenStockDetailViewEvent>().Subscribe(OnOpenStockDetailView);
 
             AddNewStockCommand = new DelegateCommand(OnAddNewStockExecute);
+            AddNewBondCommand = new DelegateCommand(OnAddNewBondExecute);
 
             NavigationViewModel = navigationViewModel;
         }
@@ -39,6 +44,7 @@ namespace Stockery.ViewModel
         }
 
         public ICommand AddNewStockCommand { get; }
+        public ICommand AddNewBondCommand { get; }
 
         public INavigationViewModel NavigationViewModel { get; }
 
@@ -71,5 +77,33 @@ namespace Stockery.ViewModel
             OnOpenStockDetailView(null);
         }
 
+        public IBondDetailViewModel BondDetailViewModel
+        {
+            get { return _bondDetailViewModel; }
+            private set
+            {
+                _bondDetailViewModel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private async void OnOpenBondDetailView(int? bondId)
+        {
+            if (BondDetailViewModel != null && BondDetailViewModel.HasChanges)
+            {
+                var result = _messageDialogService.ShowOkCancelDialog("You've made changes. Navigate away", "Question");
+                if (result == MessageDialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+            BondDetailViewModel = _bondDetailViewModelCreator();
+            await BondDetailViewModel.LoadAsync(bondId);
+        }
+
+        private void OnAddNewBondExecute()
+        {
+            OnOpenBondDetailView(null);
+        }
     }
 }

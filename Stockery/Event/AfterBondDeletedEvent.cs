@@ -2,8 +2,7 @@
 
 namespace Stockery.Event
 {
-    public class OpenStockDetailViewEvent : PubSubEvent<int?>
+    public class AfterBondDeletedEvent : PubSubEvent<int>
     {
-
     }
 }
